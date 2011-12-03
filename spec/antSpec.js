@@ -23,7 +23,11 @@ describe('Ant', function() {
     it('server emit an event', function() {
       var s = spyOn(ant.emitter, 'emit')
       ant.emit('foo', {bar: 'baz'});
-      expect(s).toHaveBeenCalledWith('foo', {bar: 'baz'})
+      
+      expect(s).toHaveBeenCalledWith('foo', { 
+        name : 'foo', 
+        data : { bar : 'baz' } 
+      });
     })
   })
   
