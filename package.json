@@ -1,7 +1,7 @@
 {
   "author": "Petr Janda <petrjanda@me.com>",
   "name": "anthill",
-  "description": "IPC-based server architecture backbone",
+  "description": "IPC-based publish / subscribe server architecture",
   "version": "0.0.0",
   "repository": {
     "type": "git",
@@ -12,7 +12,12 @@
   },
   "dependencies": {
     "dnode": "*",
-    "eventemitter2", "*"
+    "eventemitter2": "*"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "jasmine-node": "*"
+  },
+  "scripts": {
+    "test": "./jasmine-node spec/"
+  }
 }
