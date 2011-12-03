@@ -2,6 +2,7 @@ var Ant = require('../lib/ant');
 
 
 var server = new Ant({
+  name: 'server',
   port: 4001
 })
 

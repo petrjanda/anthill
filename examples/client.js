@@ -1,6 +1,7 @@
 var Ant = require('../lib/ant');
 
 var client = new Ant({
+  name: 'client',
   port: 4000
 })
 
