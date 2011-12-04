@@ -1,4 +1,5 @@
-var Ant = require('../lib/ant');
+var Ant = require('../lib/ant'),
+    EventEmitter = require('eventemitter2').EventEmitter2;
 
 describe('Ant', function() {
   
@@ -21,31 +22,13 @@ describe('Ant', function() {
   
   describe('.emit', function() {
     it('server emit an event', function() {
-      var s = spyOn(ant.emitter, 'emit')
+      var s = spyOn(EventEmitter.prototype, 'emit')
       ant.emit('foo', {bar: 'baz'});
       
       expect(s).toHaveBeenCalledWith('foo', { 
         name : 'foo', 
         data : { bar : 'baz' } 
       });
-    })
-  })
-  
-  describe('.on', function() {
-    it('should call proper client on method', function() {
-      client = {
-        on: function() {}
-      }
-      
-      ant._connections['ant-name'] = {
-        client: client
-      }
-      
-      var s = spyOn(client, 'on')
-      
-      var f = function() {}
-      ant.on('ant-name', 'foo', f);
-      expect(s).toHaveBeenCalledWith('foo', f)
     })
   })
 })
