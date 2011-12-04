@@ -1,4 +1,5 @@
-var Ant = require('../lib/ant'),
+var dnode = require('dnode'),
+    Ant = require('../lib/ant'),
     EventEmitter = require('eventemitter2').EventEmitter2;
 
 describe('Ant', function() {
@@ -52,6 +53,28 @@ describe('Ant', function() {
           name : 'foo', 
           data : { bar : 'baz' } 
         });
+      })
+    })
+    
+    describe('.connect', function() {
+      it('should connect to dnode server', function() {
+        var s = spyOn( dnode, 'connect' )
+        ant.connect( 1000, function() {} )
+        expect(s).toHaveBeenCalled();
+      })
+      
+      it('should connect to dnode server with given port', function() {
+        var s = spyOn( dnode, 'connect' )
+        ant.connect( '4000', function() {} )
+        expect(s).toHaveBeenCalledWith('4000', jasmine.any(Function));
+      })
+      
+      it('should connect to dnode server with given host and port', function() {
+        var params = { host: '192.168.0.1', port: 3000 },
+            s = spyOn( dnode, 'connect' );
+            
+        ant.connect( params, function() {} )
+        expect(s).toHaveBeenCalledWith( params, jasmine.any(Function) );
       })
     })
   })
