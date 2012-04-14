@@ -1,5 +1,6 @@
 var dnode = require('dnode'),
     Ant = require('../lib/ant'),
+    portfinder = require('portfinder'),
     EventEmitter = require('eventemitter2').EventEmitter2;
 
 describe('Ant', function() {
@@ -23,14 +24,22 @@ describe('Ant', function() {
     
     it( 'should have debug disabled by default', function() {
       expect( new Ant().debug ).toEqual(false);
-    })    
+    })  
+
+    it('should use autodiscovery of no port was given', function() {
+      spyOn(portfinder, 'getPort');
+
+      new Ant();
+
+      expect(portfinder.getPort).toHaveBeenCalledWith(jasmine.any(Function));
+    })  
   })
   
   describe( '', function() {
     var ant = null;
   
     beforeEach(function() {
-      ant = new Ant();
+      ant = new Ant({port: 99999});
       ant.start();
     })
   

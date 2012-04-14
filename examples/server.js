@@ -3,7 +3,8 @@ var Ant = require('../lib/ant');
 
 var server = new Ant({
   name: 'server',
-  port: 4001
+  port: 5001,
+  debug: true
 })
 
 server.start();
@@ -14,3 +15,5 @@ function sayHello() {
 }
 
 sayHello();
+
+//server.spawn('./examples/client.js')
