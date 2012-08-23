@@ -1,3 +1,4 @@
+[![build status](https://secure.travis-ci.org/petrjanda/anthill.png)](http://travis-ci.org/petrjanda/anthill)
 # ANTHILL - IPC publish / subscribe architecture for node.js
 
 ## Motivation

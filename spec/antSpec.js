@@ -55,10 +55,11 @@ describe('Ant', function() {
   
     describe('.emit', function() {
       it('server emit an event', function() {
-        var s = spyOn(EventEmitter.prototype, 'emit')
+        spyOn(EventEmitter.prototype, 'emit')
+        
         ant.emit('foo', {bar: 'baz'});
       
-        expect(s).toHaveBeenCalledWith('foo', { 
+        expect(EventEmitter.prototype.emit).toHaveBeenCalledWith('foo', { 
           name : 'foo', 
           data : { bar : 'baz' } 
         });
@@ -67,23 +68,28 @@ describe('Ant', function() {
     
     describe('.connect', function() {
       it('should connect to dnode server', function() {
-        var s = spyOn( dnode, 'connect' )
+        spyOn( dnode, 'connect' )
+
         ant.connect( 1000, function() {} )
-        expect(s).toHaveBeenCalled();
+        
+        expect(dnode.connect).toHaveBeenCalled();
       })
       
       it('should connect to dnode server with given port', function() {
-        var s = spyOn( dnode, 'connect' )
+        spyOn( dnode, 'connect' )
+
         ant.connect( '4000', function() {} )
-        expect(s).toHaveBeenCalledWith('4000', jasmine.any(Function));
+
+        expect(dnode.connect).toHaveBeenCalledWith('4000', jasmine.any(Function));
       })
       
       it('should connect to dnode server with given host and port', function() {
-        var params = { host: '192.168.0.1', port: 3000 },
-            s = spyOn( dnode, 'connect' );
+        var params = { host: '192.168.0.1', port: 3000 };
+        spyOn(dnode, 'connect');
             
         ant.connect( params, function() {} )
-        expect(s).toHaveBeenCalledWith( params, jasmine.any(Function) );
+
+        expect(dnode.connect).toHaveBeenCalledWith( params, jasmine.any(Function) );
       })
     })
   })
